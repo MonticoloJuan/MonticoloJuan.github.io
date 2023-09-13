@@ -24,7 +24,6 @@ class Display {
         this.tipoOperacion = undefined;
         this.valorActual = '';
         this.valorAnterior = '';
-        this.resultado ="";
         this.signos = {
             sumar: '+',
             dividir: '%',
@@ -62,25 +61,16 @@ class Display {
     imprimirValores() {
         this.ValorActual.textContent = this.valorActual;
         this.ValorAnterior.textContent = `${this.valorAnterior} ${this.signos[this.tipoOperacion] || ''}`;
-    } ValorAnterior
+    }
 
     calcular() {
         const valorAnterior = parseFloat(this.valorAnterior);
         const valorActual = parseFloat(this.valorActual);
 
         if (isNaN(valorActual) || isNaN(valorAnterior)) return
-        this.resultado = this.calculador[this.tipoOperacion](valorAnterior, valorActual);
-    }
-    guardarenStorage(){
-        let resultado = this.resultado
-
-    }
-    mostrarStorage(){
-
+        this.valorActual = this.calculador[this.tipoOperacion](valorAnterior, valorActual);
     }
 }
-
-
 
 const ValorAnterior = document.getElementById('valor-anterior');
 const ValorActual = document.getElementById('valor-actual');
