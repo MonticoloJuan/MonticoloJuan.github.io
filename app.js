@@ -24,7 +24,8 @@ class Display {
         this.tipoOperacion = undefined
         this.valorActual = ''
         this.valorAnterior = ''
-        this.resultado= ''
+        this.resultado = ''
+        this.resultados = []
         this.signos = {
             sumar: '+',
             dividir: '%',
@@ -73,20 +74,23 @@ class Display {
         this.guardarEnStorage()
     }
 
-    guardarEnStorage(){
+    guardarEnStorage() {
         let resultadojson = JSON.stringify(this.resultado)
         localStorage.setItem("resultado", resultadojson)
     }
 
-    recuperarStorage(){
+    recuperarStorage() {
         let resultadojson = localStorage.getItem("resultado")
         let resultadojs = JSON.parse(resultadojson)
-        let Aux = ""
-        resultadojs.forEach( resultado => {
-            let nuevodisplay = new Displaay(this.valorAnterior,this.valorActual)
-            listaAux.push(nuevodisplay)
+        return this.resultados.push(resultadojs)
+    }
+
+    mostrarresultado() {
+        let valoresanteriores = document.getElementById("valoresanteriores")
+        this.recuperarStorage()
+        this.resultados.forEach(resultado => {
+            valoresanteriores.innerHTML = this.resultados
         })
-        this.resultado = listaAux
     }
 }
 
@@ -96,6 +100,7 @@ const botonesNumeros = document.querySelectorAll('.numero')
 const botonesOperadores = document.querySelectorAll('.operador')
 
 const display = new Display(ValorAnterior, ValorActual)
+display.mostrarresultado()
 
 botonesNumeros.forEach(boton => {
     boton.addEventListener('click', () => display.agregarNumero(boton.innerHTML))
