@@ -24,8 +24,8 @@ class Display {
         this.tipoOperacion = undefined
         this.valorActual = ''
         this.valorAnterior = ''
-        this.resultado = 
-        this.resultados = []
+        this.resultado =
+            this.resultados = []
         this.signos = {
             sumar: '+',
             dividir: '%',
@@ -90,15 +90,15 @@ class Display {
         btnigual.addEventListener("click", () => {
             this.resultados.push(this.resultado)
         })
-        
+
     }
 
     mostrarresultado() {
         const valoresanteriores = document.getElementById("valoresanteriores")
         valoresanteriores.innerHTML = ""
-        this.resultados.forEach(_resultado => {
-            valoresanteriores.innerHTML += this.resultados/n
-            console.log(this.resultados)
+        this.resultados.forEach(() => {
+            valoresanteriores.innerHTML += this.resultado / n
+            console.log(this.resultado)
         })
     }
 }
