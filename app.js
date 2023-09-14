@@ -80,7 +80,7 @@ class Display {
     }
 
     recuperarStorage() {
-        let resultadosjson = localStorage.getItem("resultados")
+        let resultadosjson = localStorage.getItem("resultado")
         let resultadosjs = JSON.parse(resultadosjson)
         this.resultados = resultadosjs
     }
@@ -90,15 +90,15 @@ class Display {
         btnigual.addEventListener("click", () => {
             this.resultados.push(this.resultado)
         })
-
+        return this.resultados
     }
 
     mostrarresultado() {
         const valoresanteriores = document.getElementById("valoresanteriores")
         valoresanteriores.innerHTML = ""
         this.resultados.forEach(resultado => {
-            valoresanteriores.innerHTML += this.resultado / n
-            console.log(this.resultado)
+            valoresanteriores.innerHTML += this.resultado/n
+            console.log(resultado)
         })
     }
 }
@@ -110,8 +110,8 @@ const botonesOperadores = document.querySelectorAll('.operador')
 
 const display = new Display(ValorAnterior, ValorActual)
 display.guardarEnStorage()
-display.guardarenarray()
 display.recuperarStorage()
+display.guardarenarray()
 display.mostrarresultado()
 
 botonesNumeros.forEach(boton => {
