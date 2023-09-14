@@ -86,21 +86,19 @@ class Display {
     }
 
     guardarenarray() {
-        this.resultados.push(this.resultado)
-    }
-
-    eventoguardarenarray() {
         const btnigual = document.getElementById("igual")
         btnigual.addEventListener("click", () => {
-            this.guardarenarray()
+            this.resultados.push(this.resultado)
         })
+        
     }
 
     mostrarresultado() {
         const valoresanteriores = document.getElementById("valoresanteriores")
         valoresanteriores.innerHTML = ""
-        this.resultados.forEach(resultado => {
-            valoresanteriores.innerHTML += this.resultado/n
+        this.resultados.forEach(_resultado => {
+            valoresanteriores.innerHTML += this.resultados/n
+            console.log(this.resultados)
         })
     }
 }
@@ -112,7 +110,7 @@ const botonesOperadores = document.querySelectorAll('.operador')
 
 const display = new Display(ValorAnterior, ValorActual)
 display.guardarEnStorage()
-display.eventoguardarenarray()
+display.guardarenarray()
 display.recuperarStorage()
 display.mostrarresultado()
 
