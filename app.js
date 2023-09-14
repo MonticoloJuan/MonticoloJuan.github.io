@@ -24,7 +24,7 @@ class Display {
         this.tipoOperacion = undefined
         this.valorActual = ''
         this.valorAnterior = ''
-        this.resultado = ''
+        this.resultado = 
         this.resultados = []
         this.signos = {
             sumar: '+',
@@ -75,21 +75,32 @@ class Display {
     }
 
     guardarEnStorage() {
-        let resultadojson = JSON.stringify(this.resultado)
-        localStorage.setItem("resultado", resultadojson)
+        let resultadosjson = JSON.stringify(this.resultados)
+        localStorage.setItem("resultado", resultadosjson)
     }
 
     recuperarStorage() {
-        let resultadojson = localStorage.getItem("resultado")
-        let resultadojs = JSON.parse(resultadojson)
-        return this.resultados.push(resultadojs)
+        let resultadosjson = localStorage.getItem("resultados")
+        let resultadosjs = JSON.parse(resultadosjson)
+        this.resultados = resultadosjs
+    }
+
+    guardarenarray() {
+        this.resultados.push(this.resultado)
+    }
+
+    eventoguardarenarray() {
+        const btnigual = document.getElementById("igual")
+        btnigual.addEventListener("click", () => {
+            this.guardarenarray()
+        })
     }
 
     mostrarresultado() {
-        let valoresanteriores = document.getElementById("valoresanteriores")
-        this.recuperarStorage()
+        const valoresanteriores = document.getElementById("valoresanteriores")
+        valoresanteriores.innerHTML = ""
         this.resultados.forEach(resultado => {
-            valoresanteriores.innerHTML = this.resultados
+            valoresanteriores.innerHTML += this.resultado/n
         })
     }
 }
@@ -100,6 +111,9 @@ const botonesNumeros = document.querySelectorAll('.numero')
 const botonesOperadores = document.querySelectorAll('.operador')
 
 const display = new Display(ValorAnterior, ValorActual)
+display.guardarEnStorage()
+display.eventoguardarenarray()
+display.recuperarStorage()
 display.mostrarresultado()
 
 botonesNumeros.forEach(boton => {
