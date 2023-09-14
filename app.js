@@ -96,7 +96,7 @@ class Display {
     mostrarresultado() {
         const valoresanteriores = document.getElementById("valoresanteriores")
         valoresanteriores.innerHTML = ""
-        this.resultados.forEach(() => {
+        this.resultados.forEach((resultado) => {
             valoresanteriores.innerHTML += this.resultado / n
             console.log(this.resultado)
         })
